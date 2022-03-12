@@ -1,0 +1,56 @@
+using System;
+
+namespace JaggedArray
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the numbe of teams:");
+            int noOfTeams = int.Parse(Console.ReadLine());
+
+            //creat jagged array of team size
+            int[][] teamArray = new int[noOfTeams][];
+
+            //create new array to store the number of attempts of teams
+            for (int i = 0; i < noOfTeams; i++)
+            {
+                Console.WriteLine("No.of attempts for team {0}",(i+1));
+                int attempts = int.Parse(Console.ReadLine());
+                teamArray[i] = new int[attempts];
+            }
+
+            //create array to store the scores of the teams
+            //loop through the number of teams
+            //then loop to the jagged array of attempts
+
+            for (int i = 0; i < noOfTeams; i++)
+            {
+                Console.WriteLine("Enter score of team {0}", (i + 1));
+                for (int j = 0; j < teamArray[i].Length; j++)
+                {
+                    int marks = int.Parse(Console.ReadLine());
+                    teamArray[i][j] = marks;
+                }
+            }
+            Console.WriteLine(GetScore(teamArray));
+
+        }
+        //display the marks scored by each team
+        public static string GetScore(int[][] array)
+        {
+            string res = "";
+            for (int i = 0; i < array.Length; i++)
+            {
+                int sum = 0;
+                for (int j = 0; j < array[i].Length; j++)
+                {
+                    sum += array[i][j]; 
+                }
+                res += "Team " + (i + 1) + " Total Score is " + sum + ".";
+            }
+            return res;
+        }
+
+    }
+}
